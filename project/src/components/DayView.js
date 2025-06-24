@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/Dayview.css';
+import '../styles/DayView.css';
 
 const DayView = ({ events, currentDate, onEditEvent, onDeleteEvent }) => {
   const [search, setSearch] = useState('');
