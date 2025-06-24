@@ -1,0 +1,180 @@
+.day-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.day-header {
+  padding: 24px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.day-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.day-title h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.today-badge {
+  background: #3b82f6;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.day-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  overflow-y: auto;
+}
+
+.time-column {
+  border-right: 1px solid #e2e8f0;
+  background: #fafafa;
+}
+
+.time-slot {
+  height: 80px;
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.time-label {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.day-content {
+  position: relative;
+}
+
+.hour-slot {
+  height: 80px;
+  border-bottom: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  position: relative;
+  padding: 8px;
+}
+
+.hour-slot:hover {
+  background: #f8fafc;
+}
+
+.day-event {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #3b82f6;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 4px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.day-event:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.day-event.high {
+  border-left-color: #ef4444;
+}
+
+.day-event.medium {
+  border-left-color: #f59e0b;
+}
+
+.day-event.low {
+  border-left-color: #10b981;
+}
+
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.event-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.event-time {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.event-description {
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.event-location {
+  color: #64748b;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (max-width: 768px) {
+  .day-header {
+    padding: 16px;
+  }
+  
+  .day-title h3 {
+    font-size: 20px;
+  }
+  
+  .day-body {
+    grid-template-columns: 80px 1fr;
+  }
+  
+  .time-slot {
+    height: 60px;
+    padding: 8px;
+  }
+  
+  .time-label {
+    font-size: 12px;
+  }
+  
+  .hour-slot {
+    height: 60px;
+    padding: 4px;
+  }
+  
+  .day-event {
+    padding: 8px;
+  }
+  
+  .event-title {
+    font-size: 14px;
+  }
+}
+
+.conflict {
+  background-color: #f44336 !important;
+  color: white;
+}
