@@ -53,7 +53,7 @@ A modern, responsive calendar application built with **React**. This app allows 
 
 ### ✅ Prerequisites
 - Node.js (v16+)
-- npm or yarn
+- npm 
 
 ### 📦 Installation
 ```bash
@@ -64,12 +64,12 @@ npm install
 
 ### 🔑 Setup .env
 ```bash
-VITE_CALENDARIFIC_API_KEY=your_calendarific_api_key_here
+REACT_APP_CALENDARIFIC_API_KEY=your_calendarific_api_key_here
 ```
 
 ### ▶️ Run the App
 ```bash
-npm run dev
+npm start
 ```
 ---
 
@@ -83,6 +83,7 @@ Visit the live app here 👉 https://calendar-proj-new.vercel.app/
 
 - Github - [Click here](https://github.com/Nirajana-Selvaraj/)
 - LinkedIn - [Click here](https://www.linkedin.com/in/nirajana-sri/)
+- Email - [Click here](nirajanasris.22it@kongu.edu)
 
 
 
