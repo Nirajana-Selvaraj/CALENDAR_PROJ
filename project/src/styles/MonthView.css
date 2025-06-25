@@ -1,17 +1,17 @@
 .month-view {
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
+  margin-top: 20px; 
 }
 
 .calendar-section, .month-view {
-  max-height: 600px; 
-  height: 100%;
+  height: auto;
+  min-height: 500px;
 }
 
-
-.app, .app-content, .calendar-section, .month-view {
-  height: 100vh;
+.app, .app-content, .calendar-section {
+  height: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,10 +37,9 @@
 .days-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr); 
+  grid-template-rows: repeat(6, 1fr);
   background: #fff;
   flex: 1 1 0%;
-  height: 100%;
   min-height: 0;
 }
 
@@ -54,8 +53,6 @@
   border-right: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
   padding: 12px 8px 4px 8px;
-  min-height: 0;
-  height: 100;
   box-sizing: border-box;
   cursor: pointer;
   transition: background 0.2s, box-shadow 0.2s;
@@ -166,12 +163,15 @@
   .days-grid {
     min-height: 300px;
   }
+
   .day-cell {
     padding: 6px 3px 2px 3px;
   }
+
   .day-number {
     font-size: 12px;
   }
+
   .event-dot {
     font-size: 9px;
     padding: 0 3px;
@@ -182,12 +182,15 @@
   .days-grid {
     min-height: 180px;
   }
+
   .day-cell {
     padding: 2px 1px 0 1px;
   }
+
   .day-number {
     font-size: 10px;
   }
+
   .event-dot {
     font-size: 7px;
     padding: 0 1px;

@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Calendar from './components/Calendar';
 import EventModal from './components/EventModal';
 import EventList from './components/EventList';
 import Header from './components/Header';
 import './styles/App.css';
-
+import { ThemeContext } from './components/ThemeContext';
 
 const CALENDARIFIC_API_KEY = process.env.REACT_APP_CALENDARIFIC_API_KEY;
-
-
 const COUNTRY = 'IN';
 const YEAR = new Date().getFullYear();
 
@@ -18,9 +16,10 @@ const App = () => {
   const [events, setEvents] = useState([]);
   const [showEventModal, setShowEventModal] = useState(false);
   const [editingEvent, setEditingEvent] = useState(null);
-  const [view, setView] = useState('month'); 
+  const [view, setView] = useState('month');
 
-  
+  const { theme } = useContext(ThemeContext);
+
   const today = new Date();
   const yyyy = today.getFullYear();
   const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -51,10 +50,10 @@ const App = () => {
     {
       id: '3',
       title: 'Birthday Party',
-      description: 'At Rahul\'s place',
+      description: "At Rahul's place",
       date: new Date(new Date().setDate(new Date().getDate() + 2)).toISOString().split('T')[0],
       time: '19:00',
-      location: 'Rahul\'s House',
+      location: "Rahul's House",
       priority: 'low',
       category: 'personal',
     },
@@ -120,35 +119,30 @@ const App = () => {
     },
   ];
 
-  
   useEffect(() => {
     const savedEvents = localStorage.getItem('calendarEvents');
     let userEvents = [];
     if (savedEvents) {
       userEvents = JSON.parse(savedEvents);
     }
- 
+
     const allEvents = [
       ...staticEvents,
-      ...userEvents.filter(
-        ue => !staticEvents.some(se => se.id === ue.id)
-      ),
+      ...userEvents.filter(ue => !staticEvents.some(se => se.id === ue.id)),
     ];
     setEvents(allEvents);
     localStorage.setItem('calendarEvents', JSON.stringify(userEvents));
   }, []);
 
-  
   useEffect(() => {
     localStorage.setItem('calendarEvents', JSON.stringify(events));
   }, [events]);
 
-  
   useEffect(() => {
     fetch(`https://calendarific.com/api/v2/holidays?&api_key=${CALENDARIFIC_API_KEY}&country=${COUNTRY}&year=${YEAR}`)
       .then(res => res.json())
       .then(data => {
-        if (data && data.response && data.response.holidays) {
+        if (data?.response?.holidays) {
           const holidayEvents = data.response.holidays.map(h => ({
             id: `holiday-${h.date.iso}`,
             title: h.name,
@@ -159,17 +153,15 @@ const App = () => {
             priority: 'high',
             isHoliday: true
           }));
+
           setEvents(prev => {
-            
             const existingHolidayIds = new Set(prev.filter(ev => ev.isHoliday).map(ev => ev.id));
             const newHolidays = holidayEvents.filter(h => !existingHolidayIds.has(h.id));
             return [...newHolidays, ...prev];
           });
         }
       })
-      .catch(err => {
-        console.error('Failed to fetch Indian holidays:', err);
-      });
+      .catch(err => console.error('Failed to fetch Indian holidays:', err));
   }, []);
 
   const handleDateClick = (date) => {
@@ -233,21 +225,19 @@ const App = () => {
   };
 
   const getEventsForSelectedDate = () => {
-    if (!selectedDate && !currentDate) return [];
     const date = selectedDate || currentDate;
-    return events.filter(event => {
-      const eventDate = new Date(event.date);
-      return eventDate.toDateString() === date.toDateString();
-    });
+    return events.filter(event =>
+      new Date(event.date).toDateString() === date.toDateString()
+    );
   };
 
   const handleHeaderDateChange = (date) => {
     setCurrentDate(date);
-    setSelectedDate(null); 
+    setSelectedDate(null);
   };
 
   return (
-    <div className="app">
+    <div className={`app ${theme}`}>
       <Header
         currentDate={currentDate}
         view={view}
