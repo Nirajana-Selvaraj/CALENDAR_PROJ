@@ -1,14 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
+
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     clean: true,
   },
+
   module: {
     rules: [
       {
@@ -27,12 +30,23 @@ module.exports = {
       },
     ],
   },
+
   plugins: [
-    new Dotenv(), // ✅ keep this first or anywhere
+    // ✅ Loads from .env file (for local development)
+    new Dotenv({
+      systemvars: true, // ✅ Allows Vercel system vars to override .env
+    }),
+
+    // ✅ DefinePlugin for Vercel's injected build-time variables
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_CALENDARIFIC_API_KEY': JSON.stringify(process.env.REACT_APP_CALENDARIFIC_API_KEY),
+    }),
+
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
   ],
+
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
@@ -42,6 +56,7 @@ module.exports = {
     open: true,
     hot: true,
   },
+
   resolve: {
     extensions: ['.js', '.jsx'],
   },
