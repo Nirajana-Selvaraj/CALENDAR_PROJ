@@ -34,6 +34,7 @@ module.exports = {
   plugins: [
     // ✅ Loads from .env file (for local development)
     new Dotenv({
+       path: './.env', 
       systemvars: true, // ✅ Allows Vercel system vars to override .env
     }),
 
