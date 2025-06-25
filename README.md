@@ -83,8 +83,7 @@ Visit the live app here 👉 https://calendar-proj-new.vercel.app/
 
 - Github - [Click here](https://github.com/Nirajana-Selvaraj/)
 - LinkedIn - [Click here](https://www.linkedin.com/in/nirajana-sri/)
-- Email - [Click here](nirajanasris.22it@kongu.edu)
-
+- Email - nirajanasris.22it@kongu.edu
 
 
 
