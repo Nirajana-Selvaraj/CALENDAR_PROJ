@@ -7,6 +7,8 @@ import './styles/App.css';
 import { ThemeContext } from './components/ThemeContext';
 
 const CALENDARIFIC_API_KEY = process.env.REACT_APP_CALENDARIFIC_API_KEY;
+console.log('API KEY:', process.env.REACT_APP_CALENDARIFIC_API_KEY);
+
 const COUNTRY = 'IN';
 const YEAR = new Date().getFullYear();
 
